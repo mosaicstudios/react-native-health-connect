@@ -3,6 +3,7 @@ package dev.matinzd.healthconnect
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Build
 import androidx.health.connect.client.HealthConnectClient
 import com.facebook.react.bridge.ActivityEventListener
 import com.facebook.react.bridge.Promise
