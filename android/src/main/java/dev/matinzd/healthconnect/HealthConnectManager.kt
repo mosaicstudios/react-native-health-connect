@@ -82,9 +82,11 @@ class HealthConnectManager(private val applicationContext: ReactApplicationConte
         putString("providerPackageName", providerPackageName)
       }
 
-      val intent = HCPermissionManager(providerPackageName).healthPermissionContract.createIntent(
-        applicationContext, latestPermissions!!
-      )
+      val intent = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        Intent("android.health.connect.action.MANAGE_HEALTH_PERMISSIONS")
+      } else {
+        HCPermissionManager(providerPackageName).healthPermissionContract.createIntent(applicationContext, latestPermissions!!)
+      }
 
       applicationContext.currentActivity?.startActivityForResult(
         intent,
